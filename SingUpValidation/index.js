@@ -45,7 +45,6 @@ module.exports = async function (context, req) {
   context.log(`User language: ${language}`);
 
   // get domain of email address
-
   const domain = req.body.email.split("@")[1];
   const allowedDomain = "fabrikam.com";
 
@@ -64,7 +63,7 @@ module.exports = async function (context, req) {
     return;
   }
 
-  // Validate the 'Job Title' to ensure it's at last 4 characters.
+  // Validate the 'Job Title' to ensure it's at least 4 characters.
   if (req.body.jobTitle && req.body.jobTitle.length < 4) {
     context.res = {
       status: 400,
@@ -78,7 +77,7 @@ module.exports = async function (context, req) {
     };
   }
 
-  // Domain and input valid, return continuation response.
+  // Email domain and user collected attribute are valid, return continuation response.
   context.res = {
     body: { version: API_VERSION, action: "Continue" },
   };
