@@ -16,7 +16,7 @@ This sample demonstrates how to use API connectors to customize [self-service si
 In particular, the sample demonstrates how to:
 
 1. Limit external user sign-ups to only a particular federated Azure Active Directory tenant. In this example, it's a fictitious `fabrikam.com`.
-1. Validate a user-provided value ('city') against a validation rule.
+1. Validate a user-provided value ('Job Title') against a validation rule.
 
 For the API, an Azure Function HTTP trigger using Node.js is implemented with Basic authentication.
 
@@ -42,7 +42,7 @@ External Identities [self-service sign-up](https://docs.microsoft.com/en-us/azur
 Before you get started, make sure you have the following requirements in place:
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
-- A [self-service sign-up user flow](https://docs.microsoft.com/en-us/azure/active-directory/b2b/self-service-sign-up-user-flow) in an Azure AD tenant.
+- A [self-service sign-up user flow](https://docs.microsoft.com/en-us/azure/active-directory/b2b/self-service-sign-up-user-flow) in an Azure AD tenant. Only use Azure AD
 - [Node.js](https://nodejs.org/), required by Windows for npm. Only [Active LTS and Maintenance LTS versions](https://nodejs.org/about/releases/). A version of **Node.js 10 or 12.\* are recommended.**. Use the `node --version` command to check your version.
 - The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Visual Studio Code.
 
@@ -85,7 +85,7 @@ Specify a **Username** and **Password**. This will be what your Azure Function u
 
 ### Deploy the application
 
-1. Follow steps of [this](https://docs.microsoft.com/en-us/azure/javascript/tutorial-vscode-serverless-node-04) guide #1-7 to deploy your Azure Function to the cloud and get an live API endpoint URL.
+1. Follow steps of [this](https://docs.microsoft.com/en-us/azure/javascript/tutorial-vscode-serverless-node-04) guide #1-7 to deploy your Azure Function to the cloud and get a live API endpoint URL.
 1. Once deployed, you'll see a **'Upload settings'** option. Select this. It will upload your environment variables onto the [Application settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#application-settings-in-azure) of the cloud.
 
 To learn more about Visual Studio Code development for Azure Functions, see [this](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#republish-project-files).
@@ -103,9 +103,9 @@ Your API connector configuration should look like the following:
 
 - **Endpoint URL** is the Function URL you copied earlier.
 - **Username** and **Password** are the Username and Passwords you defined as environment variables earlier.
-- Select **city** as a claim to send in addition to the two preselected claims.
+- Select **Job Title** as a claim to send in addition to the two preselected claims.
 
-### Enable the API connector.
+### Enable the API connector
 
 In the **API connector** settings for your user flow, you can select the API connector to be invoked at either step:
 ![API connector selected](images/api-connector-selected.png)
