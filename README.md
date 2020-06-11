@@ -97,7 +97,9 @@ Follow the steps outlined in [Add an API connector to a user flow](https://aka.m
 ### API connector configuration
 
 Your API connector configuration should look like the following:
-![API connector configuration](images/api-connector-configuration.png)
+
+<img src="images/api-connector-configuration.png" alt="API connector configuration"
+    title="API connector configuration" width="350" />
 
 - **Endpoint URL** is the Function URL you copied earlier.
 - **Username** and **Password** are the Username and Passwords you defined as environment variables earlier.
