@@ -11,7 +11,7 @@ urlFragment: "active-directory-nodejs-external-identities-api-connector-azure-fu
 
 # External Identities self-service sign-up validation using Node.js Azure Function and API connector.
 
-This sample demonstrates how to use API connectors to customize [self-service sign-up](https://docs.microsoft.com/en-us/azure/active-directory/b2b/self-service-sign-up-overview) of External Identities.
+This sample demonstrates how to use API connectors to customize [self-service sign-up](https://docs.microsoft.com/azure/active-directory/b2b/self-service-sign-up-overview) of External Identities.
 
 In particular, the sample demonstrates how to:
 
@@ -33,17 +33,18 @@ For the API, an Azure Function HTTP trigger using Node.js is implemented with Ba
 
 ## Key concepts
 
-External Identities [self-service sign-up](https://docs.microsoft.com/en-us/azure/active-directory/b2b/self-service-sign-up-overview) enables you way to create custom experiences for external users like collaborators, partners, and guests to sign-up to to applications in your tenant for easy collaboration.
+External Identities [self-service sign-up](https://docs.microsoft.com/azure/active-directory/b2b/self-service-sign-up-overview) enables you way to create custom experiences for external users like collaborators, partners, and guests to sign-up to to applications in your tenant for easy collaboration.
 
-[API connectors](https://docs.microsoft.com/en-us/azure/active-directory/b2b/api-connectors-overview) provide you with a way to further modify and extend sign-up flows by leveraging web APIs. This examples uses an API connector to limit sign-ups to only a specific tenant: fabrikam.com. This is easily modifiable in `index.js`. Further, the API connector is used to perform input validation on 'Job Title' by ensuring a user provides a value of at least 4 characters.
+[API connectors](https://docs.microsoft.com/azure/active-directory/b2b/api-connectors-overview) provide you with a way to further modify and extend sign-up flows by leveraging web APIs. This examples uses an API connector to limit sign-ups to only a specific tenant: fabrikam.com. This is easily modifiable in `index.js`. Further, the API connector is used to perform input validation on 'Job Title' by ensuring a user provides a value of at least 4 characters.
 
 ## Prerequisites
 
 Before you get started, make sure you have the following requirements in place:
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
-- A [self-service sign-up user flow](https://docs.microsoft.com/en-us/azure/active-directory/b2b/self-service-sign-up-user-flow) in an Azure AD tenant. Only use Azure AD
+- A [self-service sign-up user flow](https://docs.microsoft.com/azure/active-directory/b2b/self-service-sign-up-user-flow) in an Azure AD tenant. Only use Azure AD
 - [Node.js](https://nodejs.org/), required by Windows for npm. Only [Active LTS and Maintenance LTS versions](https://nodejs.org/about/releases/). A version of **Node.js 10 or 12.\* are recommended.**. Use the `node --version` command to check your version.
+- Install [Visual Studio code](https://code.visualstudio.com). A free source-code editor made by Microsoft for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git.
 - The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Visual Studio Code.
 
 ## Setting up your Azure Function
@@ -64,7 +65,7 @@ git clone https://github.com/Azure-Samples/active-directory-nodejs-external-iden
 
 ### Add authentication
 
-Authentication is stored in environment variables, so they're not stored as part of the repository and should never be stored in checked in code. Read more about the [local.settings.json](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=macos%2Ccsharp%2Cbash#local-settings-file) file.
+Authentication is stored in environment variables, so they're not stored as part of the repository and should never be stored in checked in code. Read more about the [local.settings.json](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=macos%2Ccsharp%2Cbash#local-settings-file) file.
 
 1. Create a **local.settings.json** file
 1. Copy and paste the below code onto the file:
@@ -85,10 +86,10 @@ Specify a **Username** and **Password**. This will be what your Azure Function u
 
 ### Deploy the application
 
-1. Follow steps of [this](https://docs.microsoft.com/en-us/azure/javascript/tutorial-vscode-serverless-node-04) guide #1-7 to deploy your Azure Function to the cloud and get a live API endpoint URL.
-1. Once deployed, you'll see a **'Upload settings'** option. Select this. It will upload your environment variables onto the [Application settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#application-settings-in-azure) of the cloud.
+1. Follow steps of [this](https://docs.microsoft.com/azure/javascript/tutorial-vscode-serverless-node-04) guide #1-7 to deploy your Azure Function to the cloud and get a live API endpoint URL.
+1. Once deployed, you'll see a **'Upload settings'** option. Select this. It will upload your environment variables onto the [Application settings](https://docs.microsoft.com/azure/azure-functions/functions-develop-vs-code?tabs=csharp#application-settings-in-azure) of the cloud.
 
-To learn more about Visual Studio Code development for Azure Functions, see [this](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#republish-project-files).
+To learn more about Visual Studio Code development for Azure Functions, see [this](https://docs.microsoft.com/azure/azure-functions/functions-develop-vs-code?tabs=csharp#republish-project-files).
 
 ## Configure and enable the API connector
 
