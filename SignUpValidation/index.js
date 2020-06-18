@@ -46,16 +46,16 @@ module.exports = async function (context, req) {
 
   // get domain of email address
   const domain = req.body.email.split("@")[1];
-  const allowedDomain = "fabrikam.com";
+  const allowedDomains = ["fabrikam.com", "farbicam.com"];
 
   // Check that the domain of the email is from a specific other tenant
-  if (domain !== allowedDomain) {
+  if (allowedDomains.contains(domain.toLowerCase())) {
     context.res = {
       body: {
         version: API_VERSION,
         action: "ShowBlockPage",
         userMessage:
-          "You must have an account from Fabrikam to register as an external user for Contoso.",
+          "You must have an account from a valid domain to register as an external user for Contoso.",
         code: "SignUp-BlockByEmailDomain-0",
       },
     };
@@ -64,9 +64,7 @@ module.exports = async function (context, req) {
   }
 
   // Validate the 'Job Title' to ensure it's at least 4 characters.
-  if (req.body.jobTitle) {
-    //use !req.body.jobTitle to require a jobtitle
-    if (req.body.jobTitle.length < 5) {
+  if (req.body.jobTitle && req.body.jobTitle.length < 5) { //use !req.body.jobTitle to require a jobTitle
       context.res = {
         status: 400,
         body: {
@@ -77,7 +75,6 @@ module.exports = async function (context, req) {
           code: "SingUp-Input-Validation-0",
         },
       };
-    }
   }
 
   // Email domain and user collected attribute are valid, return continuation response.
