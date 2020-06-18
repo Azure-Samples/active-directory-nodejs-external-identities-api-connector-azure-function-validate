@@ -24,14 +24,14 @@ module.exports = async function (context, req) {
 
   // If input data is null, return error.
   const INVALID_REQUEST = {
-    status: 400,
+    status: 200,
     body: {
       version: API_VERSION,
       code: "INVALID_REQUEST",
     },
   };
 
-  if (!(req.body && req.body.email)) {
+  if (!(req.body && req.body.email && req.body.email.contains('@'))) {
     context.res = INVALID_REQUEST;
     context.log("Invalid Request");
     return;
@@ -64,14 +64,15 @@ module.exports = async function (context, req) {
   }
 
   // Validate the 'Job Title' to ensure it's at least 4 characters.
-  if (req.body.jobTitle && req.body.jobTitle.length < 4) {
+  if (req.body.jobTitle) { //use !req.body.jobTitle to require a jobtitle
+   if (req.body.jobTitle.length < 5) {
     context.res = {
       status: 400,
       body: {
         version: API_VERSION,
         action: "ValidationError",
         status: 400,
-        userMessage: "Please provide a job title of length greater than 4.",
+        userMessage: "Please provide a job title with at least 5 characters.",
         code: "SingUp-Input-Validation-0",
       },
     };
