@@ -49,7 +49,7 @@ module.exports = async function (context, req) {
   const allowedDomains = ["fabrikam.com", "farbicam.com"];
 
   // Check that the domain of the email is from a specific other tenant
-  if (allowedDomains.contains(domain.toLowerCase())) {
+  if (allowedDomains.includes(domain.toLowerCase())) {
     context.res = {
       body: {
         version: API_VERSION,
