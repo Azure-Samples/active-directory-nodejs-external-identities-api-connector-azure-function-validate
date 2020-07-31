@@ -63,8 +63,8 @@ module.exports = async function (context, req) {
     return;
   }
 
-  // Validate the 'Job Title' to ensure it's at least 4 characters.
-  if (req.body.jobTitle && req.body.jobTitle.length < 5) { //use !req.body.jobTitle to require a jobTitle
+  // Validate the 'Job Title', if provideed, to ensure it's at least 4 characters.
+  if (req.body.jobTitle && req.body.jobTitle.length < 5) { //use !req.body.jobTitle to require jobTitle
       context.res = {
         status: 400,
         body: {
