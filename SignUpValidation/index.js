@@ -31,7 +31,7 @@ module.exports = async function (context, req) {
     },
   };
 
-  if (!(req.body && req.body.email && req.body.email.contains("@"))) {
+  if (!(req.body && req.body.email && req.body.email.includes("@"))) {
     context.res = INVALID_REQUEST;
     context.log("Invalid Request");
     return;
@@ -49,13 +49,13 @@ module.exports = async function (context, req) {
   const allowedDomains = ["fabrikam.com", "farbicam.com"];
 
   // Check that the domain of the email is from a specific other tenant
-  if (allowedDomains.includes(domain.toLowerCase())) {
+  if (!allowedDomains.includes(domain.toLowerCase())) {
     context.res = {
       body: {
         version: API_VERSION,
         action: "ShowBlockPage",
         userMessage:
-          "You must have an account from a valid domain to register as an external user for Contoso.",
+          "You must have an account from a valid domain to register as an external user for " + allowedDomains.join(", or ") + ".",
         code: "SignUp-BlockByEmailDomain-0",
       },
     };
@@ -63,18 +63,18 @@ module.exports = async function (context, req) {
     return;
   }
 
-  // Validate the 'Job Title', if provideed, to ensure it's at least 4 characters.
+  // Validate the 'Job Title', if provided, to ensure it's at least 4 characters.
   if (req.body.jobTitle && req.body.jobTitle.length < 5) { //use !req.body.jobTitle to require jobTitle
-      context.res = {
+    context.res = {
+      status: 400,
+      body: {
+        version: API_VERSION,
+        action: "ValidationError",
         status: 400,
-        body: {
-          version: API_VERSION,
-          action: "ValidationError",
-          status: 400,
-          userMessage: "Please provide a job title with at least 5 characters.",
-          code: "SingUp-Input-Validation-0",
-        },
-      };
+        userMessage: "Please provide a job title with at least 5 characters.",
+        code: "SingUp-Input-Validation-0",
+      },
+    };
   }
 
   // Email domain and user collected attribute are valid, return continuation response.
