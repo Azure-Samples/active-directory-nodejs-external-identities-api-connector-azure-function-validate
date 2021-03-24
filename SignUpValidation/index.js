@@ -31,7 +31,7 @@ module.exports = async function (context, req) {
     },
   };
 
-  if (!(req.body && req.body.email)) {
+  if (!(req.body && req.body.email && req.body.email.contains("@"))) {
     context.res = INVALID_REQUEST;
     context.log("Invalid Request");
     return;
@@ -46,16 +46,16 @@ module.exports = async function (context, req) {
 
   // get domain of email address
   const domain = req.body.email.split("@")[1];
-  const allowedDomain = "fabrikam.com";
+  const allowedDomains = ["fabrikam.com", "farbicam.com"];
 
   // Check that the domain of the email is from a specific other tenant
-  if (domain !== allowedDomain) {
+  if (allowedDomains.includes(domain.toLowerCase())) {
     context.res = {
       body: {
         version: API_VERSION,
         action: "ShowBlockPage",
         userMessage:
-          "You must have an account from Fabrikam to register as an external user for Contoso.",
+          "You must have an account from a valid domain to register as an external user for Contoso.",
         code: "SignUp-BlockByEmailDomain-0",
       },
     };
@@ -63,18 +63,18 @@ module.exports = async function (context, req) {
     return;
   }
 
-  // Validate the 'Job Title' to ensure it's at least 4 characters.
-  if (req.body.jobTitle && req.body.jobTitle.length < 4) {
-    context.res = {
-      status: 400,
-      body: {
-        version: API_VERSION,
-        action: "ValidationError",
+  // Validate the 'Job Title', if provideed, to ensure it's at least 4 characters.
+  if (req.body.jobTitle && req.body.jobTitle.length < 5) { //use !req.body.jobTitle to require jobTitle
+      context.res = {
         status: 400,
-        userMessage: "Please provide a job title of length greater than 4.",
-        code: "SingUp-Input-Validation-0",
-      },
-    };
+        body: {
+          version: API_VERSION,
+          action: "ValidationError",
+          status: 400,
+          userMessage: "Please provide a job title with at least 5 characters.",
+          code: "SingUp-Input-Validation-0",
+        },
+      };
   }
 
   // Email domain and user collected attribute are valid, return continuation response.
