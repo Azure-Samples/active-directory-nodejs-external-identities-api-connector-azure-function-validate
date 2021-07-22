@@ -99,8 +99,8 @@ Follow the steps outlined in [Add an API connector to a user flow](https://aka.m
 
 Your API connector configuration should look like the following:
 
-<img src="images/api-connector-configuration.png" alt="API connector configuration"
-    title="API connector configuration" width="400" />
+<img src="media/api-connector-configuration.png" alt="API connector configuration"
+    title="API connector configuration" width="500" />
 
 - **Endpoint URL** is the Function URL you copied earlier.
 - **Username** and **Password** are the Username and Passwords you defined as environment variables earlier.
@@ -109,7 +109,7 @@ Your API connector configuration should look like the following:
 ### Enable the API connector
 
 In the **API connector** settings for your user flow, you can select the API connector to be invoked at either step:
-![API connector selected](images/api-connector-selected.png)
+![API connector selected](media/api-connector-selected.png)
 
 - **After signing in with an identity provider** - if enabled for this step, the API connector will only allow users with an email ending in `@fabrikam.com`.
 - **Before creating the user** - if enabled for this step, the API connector will only allow users with an email ending in `@fabrikam.com` _and_ check whether 'Job Title' is of at least length 4. Note that **Job Title** has to be selected in **User attributes** for the user flow.
