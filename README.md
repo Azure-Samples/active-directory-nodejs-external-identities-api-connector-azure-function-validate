@@ -5,13 +5,13 @@ languages:
   - nodejs
 products:
   - azure-active-directory
-description: "A sample to demonstrate how to validating a sign-up using a Node.js Azure Function and API connectors"
-urlFragment: "active-directory-nodejs-external-identities-api-connector-azure-function-validateb"
+description: "A sample to demonstrate how to validating a sign-up user flow using a Node.js Azure Function and API connectors"
+urlFragment: "active-directory-nodejs-external-identities-api-connector-azure-function-validate"
 ---
 
-# External Identities self-service sign-up validation using Node.js Azure Function and API connector.
+# User flow sign-up customization using Python Azure Function and API connectors
 
-This sample demonstrates how to use API connectors to customize [self-service sign-up](https://docs.microsoft.com/azure/active-directory/b2b/self-service-sign-up-overview) of External Identities.
+This sample demonstrates how to use API connectors to customize sign-up for [Azure AD guest user self-service sign-up](https://docs.microsoft.com/azure/active-directory/b2b/self-service-sign-up-overview) and [Azure AD B2C sign-up user flows](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-user-flows).
 
 In particular, the sample demonstrates how to:
 
@@ -33,9 +33,9 @@ For the API, an Azure Function HTTP trigger using Node.js is implemented with Ba
 
 ## Key concepts
 
-External Identities [self-service sign-up](https://docs.microsoft.com/azure/active-directory/b2b/self-service-sign-up-overview) enables you way to create custom experiences for external users like collaborators, partners, and guests to sign-up to to applications in your tenant for easy collaboration.
+API connectors provide you with a way to modify and extend sign-up flows by leveraging web APIs. API connectors are available in both [guest user self-service sign up](https://docs.microsoft.com/azure/active-directory/external-identities/api-connectors-overview) and [Azure AD B2C sign-up user flows](https://docs.microsoft.com/azure/active-directory-b2c/api-connectors-overview?pivots=b2c-user-flow).
 
-[API connectors](https://docs.microsoft.com/azure/active-directory/b2b/api-connectors-overview) provide you with a way to further modify and extend sign-up flows by leveraging web APIs. This examples uses an API connector to limit sign-ups to only a specific tenant: fabrikam.com. This is easily modifiable in `index.js`. Further, the API connector is used to perform input validation on 'Job Title' by ensuring a user provides a value of at least 4 characters.
+This examples uses an API connector to limit sign-ups to only a specific tenant: fabrikam.com. This is easily modifiable in `index.js`. Further, the API connector is used to perform input validation on 'Job Title' by ensuring a user provides a value of at least 4 characters.
 
 ## Prerequisites
 
@@ -93,7 +93,7 @@ To learn more about Visual Studio Code development for Azure Functions, see [thi
 
 ## Configure and enable the API connector
 
-Follow the steps outlined in [Add an API connector to a user flow](https://aka.ms/ExtIdAddAPIConnector) to configure and enable the API connector.
+Follow the steps outlined in "Add an API connector" for [guest user self-service sign-up](https://docs.microsoft.com/azure/active-directory/external-identities/self-service-sign-up-add-api-connector) or for [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/add-api-connector) to create an API connector and enable it your user flow. The end result is shown below.
 
 ### API connector configuration
 
